@@ -1,0 +1,52 @@
+### 프로젝트 등록 - 성공
+POST http://localhost:8080/project
+Content-Type: application/json
+X-USER-ID: 1
+
+{
+  "projectName": "project title1"
+}
+
+
+
+### 프로젝트에 멤버 초대
+POST http://localhost:8080/project/2/invite
+Content-Type: application/json
+X-USER-ID:1
+
+{
+  "userIds": [2]
+}
+
+### 프로젝트에 멤버 초대 - 실패 (프로젝트의 멤버아닌 유저가 시도)
+POST http://localhost:8080/project/3/invite
+Content-Type: application/json
+X-USER-ID:2
+
+{
+  "userIds": [1]
+}
+
+
+### 프로젝트 상태 변경
+PATCH http://localhost:8080/project/1
+Content-Type: application/json
+X-USER-ID: 1
+
+{
+  "projectStatus": "SLEEP"
+}
+
+### 프로젝트 상태 변경 - 실패 (멤버아님)
+PATCH http://localhost:8080/project/1
+Content-Type: application/json
+X-USER-ID: 100
+
+{
+  "projectStatus": "SLEEP"
+}
+
+### 본인이 속한 프로젝트 리스트 조회
+GET http://localhost:8080/project
+Content-Type: application/json
+X-USER-ID: 1

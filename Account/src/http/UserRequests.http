@@ -1,0 +1,85 @@
+### 사용자 등록
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "userName": "newUser",
+  "userPassword": "password123",
+  "userEmail": "new@example.com"
+}
+
+
+### 사용자 로그인
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "userName": "newUser",
+  "userPassword": "password123"
+}
+
+
+### 사용자 탈퇴
+PATCH http://localhost:8080/auth/withdraw
+Content-Type: application/json
+
+{
+  "userName": "newUser"
+}
+
+### 사용자 로그아웃
+POST http://localhost:8080/logout
+Content-Type: application/json
+
+{
+  "userName": "newUser"
+}
+
+### 아래는 추가사항 (사용x)
+
+### 잘못된 이메일 형식으로 사용자 등록
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+  "userName": "invalidUser",
+  "userPassword": "password123",
+  "userEmail": "invalid-email"
+}
+
+
+
+### 단일 사용자 조회
+GET http://localhost:8080/users/1
+
+### 전체 사용자 조회
+GET http://localhost:8080/users
+
+### 사용자 정보 수정
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "userName": "updatedUser",
+  "userPassword": "newPassword123",
+  "userEmail": "updated@example.com"
+}
+
+### 사용자 정보 수정 시 잘못된 이메일 형식
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "userName": "updatedUser",
+  "userPassword": "newPassword123",
+  "userEmail": "invalid-email"
+}
+
+
+### 사용자 부분 업데이트
+PATCH http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "userEmail": "partialUpdate@example.com"
+}

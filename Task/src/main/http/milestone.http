@@ -1,0 +1,58 @@
+
+### 마일스톤 등록 성공
+POST http://localhost:8080/project/2/milestone
+Content-Type: application/json
+Accept: application/json
+X-USER-ID: 1
+
+{
+  "milestoneName": "Milestone100"
+}
+
+### 마일스톤 등록 실패 - 존재하지 않는 프로젝트
+POST http://localhost:8080/project/222/milestone
+Content-Type: application/json
+Accept: application/json
+X-USER-ID: 1
+
+{
+  "milestoneName": "Milestone100"
+}
+
+### 마일스톤 등록 실패 - milestoneName 값이 없음 (1~50)
+POST http://localhost:8080/project/2/milestone
+Content-Type: application/json
+Accept: application/json
+X-USER-ID: 1
+
+{
+  "milestoneName": ""
+}
+
+### 마일스톤 수정 성공
+PUT http://localhost:8080/project/1/milestone/1
+Content-Type: application/json
+Accept: application/json
+X-USER-ID: 1
+
+{
+  "milestoneName": "111"
+}
+
+### 마일스톤 수정 실패 - taskName 값이 없음 (1~50)
+PUT http://localhost:8080/project/2/milestone/1
+Content-Type: application/json
+Accept: application/json
+X-USER-ID: 1
+
+{
+  "milestoneName": ""
+}
+
+### 마일스톤 삭제 성공
+DELETE http://localhost:8080/project/2/milestone/2
+X-USER-ID: 1
+
+### 마일스톤 삭제 실패
+DELETE http://localhost:8080/project/2/milestone/3
+X-USER-ID: 1

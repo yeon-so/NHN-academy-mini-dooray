@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Comments</title>
+</head>
+<body>
+<h2>Comments for Task</h2>
+
+<ul>
+    <li th:each="comment : ${comments}">
+        <span th:text="${comment.user.userName}"></span>: <span th:text="${comment.content}"></span>
+        <form th:action="@{/tasks/{taskId}/comments/{commentId}/delete(taskId=${task.id}, commentId=${comment.id})}" method="post">
+            <button type="submit">Delete</button>
+        </form>
+        <form th:action="@{/tasks/{taskId}/comments/{commentId}/edit(taskId=${task.id}, commentId=${comment.id})}" method="post">
+            <input type="text" name="newContent" placeholder="Edit comment">
+            <button type="submit">Edit</button>
+        </form>
+    </li>
+</ul>
+
+<form th:action="@{/tasks/{taskId}/comments(taskId=${task.id})}" method="post">
+    <textarea name="content" placeholder="Add a comment"></textarea>
+    <button type="submit">Add Comment</button>
+</form>
+
+</body>
+</html>

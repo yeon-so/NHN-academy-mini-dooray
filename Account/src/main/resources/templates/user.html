@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <title>User Management</title>
+</head>
+<body>
+<h1>User List</h1>
+
+<!-- 유저 리스트를 출력 -->
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- 유저 리스트를 루프 돌면서 표시 -->
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}">1</td>
+    <td th:text="${user.userName}">이름</td>
+    <td th:text="${user.userEmail}">이메일</td>
+    <td>
+      <!-- 유저 정보 수정 -->
+      <form th:action="@{/users/{id}(id=${user.id})}" method="get" style="display: inline;">
+        <button type="submit">Edit</button>
+      </form>
+
+      <!-- 유저 삭제 -->
+      <form th:action="@{/users/{id}(id=${user.id})}" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete</button>
+      </form>
+
+      <!-- 유저 정보 보기 -->
+      <form th:action="@{/users/{id}(id=${user.id})}" method="get" style="display: inline;">
+        <button type="submit">View</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 새로운 유저 추가 버튼 -->
+<form th:action="@{/users/register}" method="get">
+  <button type="submit">Add New User</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+### 1-1. 프로젝트 태그 등록 (플젝 아이디, 태그이름 보내기)
+POST http://localhost:8080/project/1/tag
+Content-Type: application/json
+X-USER-ID: 1
+
+{
+  "tagName": "yourTagName"
+}
+
+### 1-2. 프로젝트 태그 등록 (해당 유저가 플젝 멤버 아닌경우..실패)
+POST http://localhost:8080/project/3/tag
+Content-Type: application/json
+X-USER-ID: 2
+
+{
+  "tagName": "yourTagName"
+}
+
+
+### 2-1. 프로젝트 태그 수정 - 성공
+PUT http://localhost:8080/project/1/tag/1
+Content-Type: application/json
+X-USER-ID: 1
+
+{
+  "tagName": "수정한 태그"
+}
+
+### 2-2. 프로젝트 태그 수정 (해당 유저가 플젝 멤버 아닌경우..실패)
+PUT http://localhost:8080/project/3/tag/4
+Content-Type: application/json
+X-USER-ID: 2
+
+{
+  "tagName": "수정한 태그"
+}
+
+### 3-1. 프로젝트 태그 삭제 - 성공
+DELETE http://localhost:8080/project/3/tag/4
+Content-Type: application/json
+X-USER-ID: 3
+
+
+### 3-2. 프로젝트 태그 삭제 (해당 유저가 플젝 멤버 아닌경우..실패)
+DELETE http://localhost:8080/project/3/tag/4
+Content-Type: application/json
+X-USER-ID: 2
